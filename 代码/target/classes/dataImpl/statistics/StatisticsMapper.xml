@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.cinema.data.statistics.StatisticsMapper">
+    <select id="selectMovieScheduleTimes" resultType="com.example.cinema.po.MovieScheduleTime">
+        select movie_id as movieId, count(*) as time,name from
+              (select * from schedule where start_time between #{date} and #{nextDate}) s,
+              movie where s.movie_id = movie.id group by movieId
+    </select>
+
+    <select id="selectMovieTotalBoxOffice" resultType="com.example.cinema.po.MovieTotalBoxOffice">
+        select movie.id as movieId, boxOffice,name from movie
+        left join
+          (select movie_id as movieId,sum(fare) as boxOffice from schedule
+          right join
+          (select schedule_id from ticket where state = 1) t
+          on schedule.id = t.schedule_id group by movie_id) s
+        on s.movieId = movie.id
+        order by boxOffice desc
+    </select>
+
+    <select id="selectAudiencePrice" resultType="com.example.cinema.po.AudiencePrice">
+        select user_id as userId, sum(fare) as totalPrice from schedule right join
+              (select * from ticket where schedule_id in
+              (select id from schedule where start_time between #{date} and #{nextDate}) and state = 1) t
+        on schedule.id = schedule_id group by user_id
+    </select>
+</mapper>

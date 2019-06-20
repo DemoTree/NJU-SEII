@@ -1,0 +1,25 @@
+body{
+	background: linear-gradient(to bottom right, #1caf9a, #1caaaa);
+}
+
+#main-container {
+	background: url("https://account.talkingdata.com/images/bg-regist.png") top center no-repeat;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+#login-container {
+	/*background: rgba(0, 0, 0, 0.6);*/
+	border-radius: 3px;
+	padding: 20px;
+	width: 400px;
+}
+
+#login-form {
+	margin-top: 35px;
+}
+
+.input-interval {
+	margin: 15px 0;
+}

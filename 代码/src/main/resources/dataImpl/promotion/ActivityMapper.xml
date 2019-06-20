@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.cinema.data.promotion.ActivityMapper">
+    <insert id="insertActivity" parameterType="com.example.cinema.po.Activity"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into activity(a_description,activity_name,coupon_id,start_time,end_time)
+        values(#{description},#{name},#{coupon.id},#{startTime},#{endTime})
+    </insert>
+    <insert id="insertActivityAndMovie">
+        insert into activity_movie(activity_id,movie_id) values
+        <foreach collection="movieId" item="item" index="index"
+                 separator=",">
+            (#{activityId},#{item})
+        </foreach>
+    </insert>
+    <select id="selectById" resultMap="Activity">
+        select
+            *
+        from
+            activity a
+        left join
+            activity_movie am
+        on
+            a.id=am.activity_id
+        left join
+            movie m
+        on
+            am.movie_id=m.id
+        WHERE a.id=#{id}
+    </select>
+
+    <select id="selectActivities" resultMap="Activity">
+        select
+            *
+        from
+            activity a
+        left join
+            activity_movie am
+        on
+            a.id=am.activity_id
+        left join
+            movie m
+        on
+            am.movie_id=m.id
+
+    </select>
+
+    <select id="selectActivitiesByMovie" resultMap="Activity">
+        select
+        *
+        from
+        activity a
+        left join
+        activity_movie am
+        on
+        a.id=am.activity_id
+        left join
+        movie m
+        on
+        am.movie_id=m.id
+
+        where a.start_time &lt; Now() and a.end_time &gt; Now() and am.movie_id=#{movieId}
+
+    </select>
+    <select id="selectActivitiesWithoutMovie" resultMap="Activity">
+        select
+        *
+        from
+        activity a
+        left join
+        activity_movie am
+        on
+        a.id=am.activity_id
+        where a.start_time &lt; Now() and a.end_time &gt; Now() and movie_id is null
+
+    </select>
+
+
+
+    <resultMap id="Activity" type="com.example.cinema.po.Activity">
+        <result column="a_description" property="description"></result>
+        <result column="id" property="id"></result>
+        <result column="activity_name" property="name"></result>
+        <result column="start_time" property="startTime"></result>
+        <result column="end_time" property="endTime"></result>
+        <association property="coupon" column="coupon_id" select="com.example.cinema.data.promotion.CouponMapper.selectById">
+        </association>
+        <collection property="movieList" ofType="com.example.cinema.po.Movie">
+            <id column="movie_id" property="id"></id>
+            <result column="poster_url" property="posterUrl"></result>
+            <result column="screen_writer" property="screenWriter"></result>
+            <result column="start_date" property="startDate"></result>
+            <result column="end_date" property="endDate"></result>
+            <result column="name" property="name"></result>
+            <result column="director" property="director"></result>
+            <result column="type" property="type"></result>
+            <result column="country" property="country"></result>
+            <result column="language" property="language"></result>
+            <result column="length" property="length"></result>
+            <result column="description" property="description"></result>
+            <result column="status" property="status"></result>
+            <result column="starring" property="starring"></result>
+        </collection>
+    </resultMap>
+
+</mapper>

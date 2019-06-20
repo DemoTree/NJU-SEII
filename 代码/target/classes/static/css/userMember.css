@@ -1,0 +1,156 @@
+.card {
+    padding: 30px 40px;
+    color: #444444;
+    margin-bottom: 40px;
+}
+
+.card .header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px 0 5px 0;
+}
+
+.card .header .title {
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.card .header .state {
+    font-size: 16px;
+    color: #ec971f;
+}
+
+.card .line {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.card .line hr {
+    flex-grow: 1;
+    margin-left: 10px;
+}
+
+/* info为vip信息样式 */
+.card .info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+    border: 1px solid #1caf9a;
+}
+
+.card .info .price {
+    font-size: 24px;
+}
+
+.card .info .price b {
+    color: #1caf9a;
+    font-size: 32px;
+}
+
+.card .info .description {
+    color: #adadad;
+}
+
+.card .info .content {
+    font-size: 15px;
+    width: 30%;
+}
+
+.card .info .content .line {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 3px 0;
+}
+
+.card .info button {
+    margin-top: 20px;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 10px 0;
+    background: #1caf9a;
+    font-size: 16px;
+    color: #fff;
+    line-height: 26px;
+    text-align: center
+}
+
+/* coupon为优惠券样式 */
+.coupon-wrapper {
+    padding: 5px;
+}
+
+.coupon {
+    /* 相对定位，方便让before和after伪元素绝对定位偏移 */
+    position: relative;
+    overflow: hidden;
+    background: #1caf9a;
+    height: 120px;
+    margin: 5px;
+}
+
+.coupon:before, .coupon:after {
+    top: 10px;
+    content: ' ';
+    width: 0;
+    height: 100%;
+    /* 绝对定位进行偏移 */
+    position: absolute;
+}
+
+.coupon:before {
+    /* 圆点型的border */
+    border-right: 10px dotted white;
+    /* 偏移一个半径，让圆点的一半覆盖div */
+    left: -5px;
+}
+
+.coupon:after {
+    /* 圆点型的border */
+    border-left: 10px dotted white;
+    /* 偏移一个半径，让圆点的一半覆盖div */
+    right: -5px;
+}
+
+.coupon .content {
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+    color: white;
+    align-items: center;
+}
+
+.coupon .content .left {
+    display: flex;
+    flex-shrink: 0;
+    min-width: 50%;
+    flex-direction: column;
+    border-right: 2px dashed rgba(255,255,255,.3);
+}
+
+.coupon .content .left .name{
+    font-size: 16px;
+}
+
+.coupon .content .left .description{
+    font-size: 10px;
+    color: #f9d3a1;
+}
+
+.coupon .content .left .price{
+    font-size: 24px;
+}
+
+.coupon .content .right {
+    text-align: left;
+    color: #d2d2d2;
+}
+
+.notice {
+     margin-left: 12px;
+}

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.cinema.data.management.MovieMapper">
+    <insert id="insertOneMovie" parameterType="com.example.cinema.vo.MovieForm"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into movie(name, poster_url, director, screen_writer, starring, type, country, language, length, start_date, description, status)
+        values(#{name}, #{posterUrl}, #{director},  #{screenWriter}, #{starring}, #{type}, #{country}, #{language}, #{length}, #{startDate}, #{description}, 0)
+    </insert>
+
+    <select id="selectMovieById" resultMap="Movie">
+        select * from movie where id = #{id}
+    </select>
+
+    <select id="selectMovieByIdAndUserId" resultMap="Movie">
+        select * from (select * from movie m,(select count(*) as isLike from movie_like ml where ml.movie_id = #{id} and ml.user_id = #{userId}) ik where id = #{id}) a
+        left join (select l.movie_id as id, count(*) as likeCount from movie_like l where l.movie_id = #{id}) b on a.id = b.id
+    </select>
+
+    <select id="selectAllMovie" resultMap="Movie">
+        select * from movie m
+        left join
+        (select l.movie_id, count(*) as likeCount from movie_like l group by l.movie_id) l
+        on m.id = l.movie_id
+        order by m.start_date asc
+    </select>
+
+    <select id="selectOtherMoviesExcludeOff" resultMap="Movie">
+        select * from
+        (select * from movie where movie.status = 0) m
+        left join
+        (select l.movie_id, count(*) as likeCount from movie_like l group by l.movie_id) l
+        on m.id = l.movie_id
+        order by m.start_date asc
+    </select>
+
+    <select id="selectMovieByKeyword" resultMap="Movie">
+        select * from movie as m where concat(m.name,m.description,m.type,m.starring,m.type)
+        like concat('%',#{keyword},'%');
+    </select>
+
+    <update id="updateMovieStatusBatch" parameterType="java.util.List">
+        update movie set status = 1 where id in
+        <foreach collection="list" index="index" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </update>
+
+    <update id="updateMovie" parameterType="com.example.cinema.vo.MovieForm">
+        update movie set poster_url = #{posterUrl}, director = #{director}, screen_writer = #{screenWriter},
+        starring = #{starring}, type = #{type}, country = #{country}, language = #{language},
+        length = #{length}, start_date = #{startDate}, name = #{name}, description = #{description}
+        where id = #{id}
+    </update>
+
+    <resultMap id="Movie" type="com.example.cinema.po.Movie">
+        <id column="id" property="id"></id>
+        <result column="poster_url" property="posterUrl"></result>
+        <result column="screen_writer" property="screenWriter"></result>
+        <result column="start_date" property="startDate"></result>
+        <result column="end_date" property="endDate"></result>
+    </resultMap>
+
+</mapper>

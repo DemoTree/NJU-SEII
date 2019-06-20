@@ -1,0 +1,97 @@
+/*第一阶段*/
+.seat-content {
+    display: flex;
+}
+
+.seat-content .movie-detail {
+    padding: 20px;
+    min-width: 30%;
+}
+
+.seat-content .movie-detail .line {
+    display: flex;
+    flex-direction: row;
+}
+
+.seat-content .movie-detail .line .name {
+    flex-shrink: 0;
+}
+
+.img-wrapper {
+    margin-right: 20px;
+    margin-bottom: 20px;
+    width: 100px;
+}
+
+.img-wrapper img {
+    width: 100%;
+    height: auto;
+}
+
+.info #movie-name {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+#seat-detail {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#seat-detail span {
+    flex-shrink: 0;
+    margin-right: 5px;
+}
+
+/*第二阶段*/
+#order-state table thead tr {
+    background-color: #1caf9ab8;
+}
+
+#order-state table th, td {
+    text-align: center;
+    vertical-align: middle !important;
+}
+
+.order-info {
+    margin: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.item {
+    margin: 5px 0;
+}
+
+.order-footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.order-footer b {
+    font-size: 20px;
+    color: #1caf9a;
+}
+
+hr.dashed-line {
+    border: 1px dashed #eeeeee
+}
+
+.success-notice {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+}
+
+.success-notice .hint {
+    margin-top: 25px;
+    font-size: 20px;
+}

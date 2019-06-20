@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>影院管理</title>
+    <link rel="stylesheet" type="text/css" href="/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/cinemaHall.css"/>
+
+    <script src="/js/jquery.js"></script>
+    <script src="/js/bootstrap.js"></script>
+    <script src="/js/request.js"></script>
+    <script src="/js/adminCinemaManage.js"></script>
+
+</head>
+<body>
+<div class="main-container">
+    <div class="nav-left-container">
+        <div class="nav-user-container" style="margin-bottom: 50px;">
+            <img class="avatar-lg" src="/images/defaultAvatar.jpg" />
+            <p class="title">Admin</p>
+        </div>
+        <ul class="nav nav-pills nav-stacked">
+            <li role="presentation"><a href="/admin/movie/manage"><i class="icon-film"></i> 电影管理</a></li>
+            <li role="presentation"><a href="/admin/session/manage"><i class="icon-calendar"></i> 排片管理</a></li>
+            <li role="presentation"><a href="/admin/promotion/manage"><i class="icon-gift"></i> 活动管理</a></li>
+            <li role="presentation" class="active"><a href="#"><i class="icon-cogs"></i> 影院管理</a></li>
+            <li role="presentation"><a href="/admin/cinema/statistic"><i class="icon-bar-chart"></i> 影院统计</a></li>
+        </ul>
+    </div>
+    <div class="content-container">
+        <div class="content-item">
+            <span class="title gray-text">常规设置</span>
+            <div class="content-card card">
+                <span class="">用户可见排片日期：</span><span id="can-see-num"></span>
+                <a style="margin-left: 20px;" class="primary-text" id="canview-modify-btn">修改</a>
+                <input type="number" class="form-control" id="canview-set-input" style="display: none;width: 200px;">
+                <a style="display: none" class="primary-text" id="canview-confirm-btn">确认</a>
+            </div>
+        </div>
+        <div class="content-item">
+            <span class="title gray-text">影厅管理</span>
+            <div class="content-card card" id="hall-card">
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

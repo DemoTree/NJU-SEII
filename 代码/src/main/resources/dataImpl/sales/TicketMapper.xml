@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.cinema.data.sales.TicketMapper">
+    <insert id="insertTicket" parameterType="com.example.cinema.po.Ticket"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into ticket(user_id,schedule_id,column_index,row_index,state)
+        values(#{userId}, #{scheduleId},#{columnIndex},#{rowIndex},#{state})
+    </insert>
+    <insert id="insertTickets" parameterType="java.util.List"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into ticket(user_id,schedule_id,column_index,row_index,state)
+        values
+        <foreach collection="list" item="item" index="index"
+                 separator=",">
+            (#{item.userId}, #{item.scheduleId},#{item.columnIndex},#{item.rowIndex},#{item.state})
+        </foreach>
+
+    </insert>
+
+    <select id="selectTicketById" resultMap="Ticket">
+        select * from ticket where id=#{id}
+    </select>
+
+    <select id="selectTicketsBySchedule" resultMap="Ticket">
+        select * from ticket where schedule_id=#{scheduleId} and state!=2
+    </select>
+
+    <select id="selectTicketByScheduleIdAndSeat" resultMap="Ticket">
+        select * from ticket where schedule_id=#{scheduleId} and column_index=#{column} and row_index=#{row} and state!=2
+    </select>
+
+    <select id="selectTicketByUser" resultMap="Ticket">
+        select * from ticket where user_id=#{userId}
+    </select>
+
+
+    <update id="updateTicketState">
+        update ticket set state = #{state} where id=#{ticketId}
+    </update>
+
+    <delete id="deleteTicket">
+        delete from ticket where id=#{ticketId}
+    </delete>
+
+    <resultMap id="Ticket" type="com.example.cinema.po.Ticket">
+        <result column="schedule_id" property="scheduleId"></result>
+        <result column="id" property="id"></result>
+        <result column="user_id" property="userId"></result>
+        <result column="column_index" property="columnIndex"></result>
+        <result column="row_index" property="rowIndex"></result>
+        <result column="state" property="state"></result>
+        <result column="time" property="time"></result>
+    </resultMap>
+
+    <update id="cleanExpiredTicket">
+        update ticket SET  state =2 WHERE minute(UNIX_TIMESTAMP(now())-UNIX_TIMESTAMP(time))>900 and state=0;
+    </update>
+
+</mapper>

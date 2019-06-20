@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.cinema.data.management.ScheduleMapper">
+    <insert id="insertOneSchedule" parameterType="com.example.cinema.vo.ScheduleForm"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into schedule(hall_id, movie_id, start_time, end_time, fare)
+        values(#{hallId}, #{movieId}, #{startTime}, #{endTime}, #{fare})
+    </insert>
+
+    <select id="selectSchedule" resultMap="ScheduleItem">
+        select * from
+          (select * from schedule where hall_id = #{hallId} and start_time between #{startDate} and #{endDate}) s,
+          (select name as movie_name, id as movie_id from movie) m,
+          (select name as hall_name, id as hall_id from hall) h
+            where s.movie_id = m.movie_id and s.hall_id = h.hall_id
+    </select>
+
+    <select id="selectScheduleConflictByHallIdAndTime" resultMap="ScheduleItem">
+      select * from schedule
+        where hall_id = #{hallId}
+          <if test="#{id} != null">
+              and id != #{id}
+          </if>
+          and ((#{startTime} between start_time and end_time)
+          or (#{endTime} between start_time and end_time)
+          or (start_time between #{startTime} and #{endTime}))
+    </select>
+
+    <select id="selectScheduleByMovieIdList" resultMap="ScheduleItem" parameterType="java.util.List">
+        select * from schedule where movie_id in
+        <foreach collection="list" index="index" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </select>
+
+    <insert id="insertOneView" parameterType="com.example.cinema.vo.ScheduleViewForm"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into view(day) values(#{day})
+    </insert>
+
+    <update id="updateOneView" parameterType="com.example.cinema.vo.ScheduleViewForm">
+        update view set day = #{day}
+    </update>
+
+    <select id="selectViewCount" resultType="int">
+      select count(*) as num from view
+    </select>
+
+    <delete id="deleteScheduleBatch" parameterType="java.util.List">
+        delete from schedule where id in
+        <foreach collection="list" index="index" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </delete>
+
+    <select id="selectScheduleBatch" parameterType="java.util.List" resultMap="ScheduleItem">
+        select * from schedule where id in
+        <foreach collection="list" index="index" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </select>
+
+    <select id="selectView" resultType="int">
+        select day from view limit 1
+    </select>
+
+    <update id="updateScheduleById" parameterType="com.example.cinema.vo.ScheduleForm">
+        update schedule set hall_id = #{hallId}, movie_id = #{movieId}, start_time = #{startTime},
+          end_time = #{endTime}, fare = #{fare}
+          where id = #{id}
+
+    </update>
+
+    <select id="selectScheduleById" resultMap="ScheduleItem">
+        select * from
+          (select * from schedule where id = #{id}) s,
+          (select name as movie_name, id as movie_id from movie) m,
+          (select name as hall_name, id as hall_id from hall) h
+            where s.movie_id = m.movie_id and s.hall_id = h.hall_id
+    </select>
+
+    <select id="selectScheduleByMovieId" resultMap="ScheduleItem">
+        select * from
+          (select * from schedule where movie_id = #{movieId}) s,
+          (select name as movie_name, id as movie_id from movie) m,
+          (select name as hall_name, id as hall_id from hall) h
+            where s.movie_id = m.movie_id and s.hall_id = h.hall_id
+            order by end_time asc
+    </select>
+
+    <resultMap id="ScheduleItem" type="com.example.cinema.po.ScheduleItem">
+        <id column="id" property="id"></id>
+        <result column="hall_id" property="hallId"></result>
+        <result column="movie_id" property="movieId"></result>
+        <result column="start_time" property="startTime"></result>
+        <result column="end_time" property="endTime"></result>
+        <result column="movie_name" property="movieName"></result>
+        <result column="hall_name" property="hallName"></result>
+    </resultMap>
+
+</mapper>

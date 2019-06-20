@@ -1,0 +1,40 @@
+.schedule-container {
+    display: flex;
+    padding: 0 20px;
+}
+
+.schedule-time-line {
+    width: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.schedule-item-line {
+    height: 960px;
+    width: 150px;
+    border-left: 1px solid #ccc;
+    position: relative;
+}
+
+.schedule-item {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #fff;
+    position: absolute;
+    overflow-y: scroll;
+}
+
+.schedule-date-container {
+    padding-left: 100px;
+    height: 40px;
+    line-height: 30px;
+    display: flex;
+}
+
+.schedule-date {
+    width: 150px;
+    text-align: center;
+}

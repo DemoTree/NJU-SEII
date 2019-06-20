@@ -1,0 +1,38 @@
+.content-header {
+    display: flex;
+}
+
+.movie-basic-info {
+    flex: 1;
+    padding: 0 20px;
+    height: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.movie-operations {
+    margin-top: auto;
+}
+
+#movie-img {
+    height: 320px;
+    width: 240px;
+}
+
+#movie-description {
+    max-height: 80px;
+    min-height: 40px;
+}
+
+.seesion-container {
+    margin-top: 30px;
+    background-color: whitesmoke;
+}
+
+.statistic-container {
+    margin-top: 30px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}

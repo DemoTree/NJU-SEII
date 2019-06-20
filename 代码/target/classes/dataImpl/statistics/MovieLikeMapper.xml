@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.cinema.data.statistics.MovieLikeMapper">
+    <insert id="insertOneLike" >
+        insert into movie_like(user_id,movie_id)
+        values(#{userId}, #{movieId})
+    </insert>
+
+    <select id="selectLikeMovie" resultType="int">
+        select count(*) from movie_like where movie_id = #{movieId} and user_id=#{userId}
+    </select>
+
+    <select id="selectLikeNums" resultType="int">
+        select count(*) from movie_like where movie_id = #{movieId}
+    </select>
+
+    <delete id="deleteOneLike">
+        delete from movie_like where movie_id = #{movieId} and user_id=#{userId}
+    </delete>
+    
+    <select id="getDateLikeNum" resultMap="MovieLike">
+        select count(*) as like_num ,DATE(like_time) as `time` from movie_like ml where movie_id=#{movieId} GROUP BY DATE(ml.like_time)
+    </select>
+
+    <resultMap id="MovieLike" type="com.example.cinema.po.DateLike">
+        <result column="time" property="likeTime"></result>
+        <result column="like_num" property="likeNum"></result>
+    </resultMap>
+
+</mapper>

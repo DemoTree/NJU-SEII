@@ -1,0 +1,46 @@
+.cinema-hall {
+
+}
+
+.cinema-hall-name {
+    font-size: 18px;
+    color: #000;
+}
+
+.cinema-hall-size {
+    font-size: 14px;
+    color: #999;
+}
+
+.cinema-hall-seat {
+    background: url("../images/seat.png");
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    margin: 3px;
+
+    border: none;
+    outline: none;
+}
+
+.cinema-hall-seat-choose {
+    background: url("../images/seatChoose.png");
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    margin: 3px;
+
+    border: none;
+    outline: none;
+}
+
+.cinema-hall-seat-lock {
+    background: url("../images/seatLock.png");
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    margin: 3px;
+
+    border: none;
+    outline: none;
+}
