@@ -1,0 +1,14 @@
+TMS 影院管理系统
+
+user 1,2
+film 3,4,5,6,7,8
+arrangement 9,10,11,12,13,14,15
+promotion 16
+sale 17
+member 18,19,20
+utility
+
+赵茁羽：user，film
+刘晓东：arrangement
+金勇成：promotion，sale，member
+蔡明卫：其余内容

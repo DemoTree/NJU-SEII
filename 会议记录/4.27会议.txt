@@ -1,0 +1,12 @@
+5 user 1,2,23
+6 film 3,4,5,6,7,8,21,22
+6 arrangement 9,10,11,12,13,14,15
+4 promotion 16
+7 sale 17
+3 member 18,19,20
+1 statistic 15
+
+arrangement statistic 引言 刘晓东
+user promotion 9 金勇成
+film member 9 赵茁羽
+sale 整体视角 蔡明卫
