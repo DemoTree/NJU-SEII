@@ -1,5 +1,6 @@
 package com.example.cinema.bl.management;
 
+import com.example.cinema.vo.HallForm;
 import com.example.cinema.vo.ResponseVO;
 
 /**
@@ -12,4 +13,30 @@ public interface HallService {
      * @return
      */
     ResponseVO searchAllHall();
+
+    /**
+     * 添加影厅信息
+     * @param hallform
+     * @author zzy
+     * @date 5/31
+     */
+    ResponseVO addHall(HallForm hallform);
+
+    /**
+     * 修改影厅信息
+     * @param hallform
+     * @author zzy
+     * @date 5/31
+     */
+    ResponseVO updateHall(HallForm hallform);
+
+    /**
+     * 删除影厅
+     * @param hallform
+     * @author zzy
+     * @date 6/3
+     */
+    ResponseVO deleteHall(HallForm hallform);
+
+
 }

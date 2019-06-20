@@ -1,5 +1,8 @@
 package com.example.cinema.po;
 
+import com.example.cinema.vo.HallVO;
+
+
 /**
  * @author fjj
  * @date 2019/4/28 5:09 PM
@@ -9,6 +12,13 @@ public class Hall {
     private String name;
     private Integer row;
     private Integer column;
+    /**
+     * 影厅种类
+     * 1:2D厅 2:3D厅 3:IMAX厅
+     * @author zzy
+     * @date 5/31
+     */
+    private Integer type;
 
     public Integer getId() {
         return id;
@@ -40,5 +50,13 @@ public class Hall {
 
     public void setColumn(Integer column) {
         this.column = column;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
     }
 }

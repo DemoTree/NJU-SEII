@@ -10,11 +10,13 @@ public class UserVO {
     private Integer id;
     private String username;
     private String password;
+    private String role;
 
     public UserVO(User user){
         this.id = user.getId();
         this.username = user.getUsername();
         this.password = user.getPassword();
+        this.role = user.getRole();
     }
 
     public Integer getId() {
@@ -39,5 +41,13 @@ public class UserVO {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

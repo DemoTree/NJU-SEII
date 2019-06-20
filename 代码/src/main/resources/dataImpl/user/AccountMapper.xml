@@ -1,12 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.cinema.data.user.AccountMapper">
-    <insert id="createNewAccount" useGeneratedKeys="true" keyProperty="id">
-        insert into user(username,password)
-        values(#{username},#{password})
+    <insert id="createNewAccount" parameterType="com.example.cinema.po.User"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into user(role,username,password)
+        values(#{role},#{username},#{password})
     </insert>
+
     <select id="getAccountByName" resultMap="User">
         select * from user where username=#{username}
+    </select>
+
+    <select id="selectAllAdmin" resultMap="User">
+        select * from user where role = 'admin'
+    </select>
+
+    <select id="selectAllUser" resultMap="User">
+        select * from user where role = 'user'
+    </select>
+
+    <update id="updateAdmin" parameterType="com.example.cinema.po.User">
+        update user
+        set role=#{role}, username=#{username}, password=#{password}
+        where id = #{id}
+    </update>
+
+    <delete id="deleteAdmin">
+        delete
+        from user
+        where id = #{id}
+    </delete>
+
+    <update id="updateUser" parameterType="com.example.cinema.po.User">
+        update user
+        set role=#{role}, username=#{username}, password=#{password}
+        where id = #{id}
+    </update>
+
+    <delete id="deleteUser">
+        delete
+        from user
+        where id = #{id}
+    </delete>
+
+    <select id="checkAccountName" resultType="int">
+        select count(id)
+        from user
+        where username = #{username}
+          and id != #{id}
     </select>
 
     <resultMap id="User" type="com.example.cinema.po.User">

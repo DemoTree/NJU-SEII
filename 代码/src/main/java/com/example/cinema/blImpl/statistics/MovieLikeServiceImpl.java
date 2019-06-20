@@ -29,7 +29,7 @@ public class MovieLikeServiceImpl implements MovieLikeService {
     @Override
     public ResponseVO likeMovie(int userId, int movieId) {
 
-        //todo: user 判空
+        //user 判空
         if (userLikeTheMovie(userId, movieId)) {
             return ResponseVO.buildFailure(ALREADY_LIKE_ERROR_MESSAGE);
         } else if (movieServiceForBl.getMovieById(movieId) == null) {

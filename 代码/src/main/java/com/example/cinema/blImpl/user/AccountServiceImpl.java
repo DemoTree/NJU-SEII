@@ -9,12 +9,16 @@ import com.example.cinema.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author huwen
  * @date 2019/3/23
  */
 @Service
 public class AccountServiceImpl implements AccountService {
+    private static final String NAME_SET_ERROR_MESSAGE = "有账号重名，无法删除或修改";
     private final static String ACCOUNT_EXIST = "账号已存在";
     @Autowired
     private AccountMapper accountMapper;
@@ -22,7 +26,11 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public ResponseVO registerAccount(UserForm userForm) {
         try {
-            accountMapper.createNewAccount(userForm.getUsername(), userForm.getPassword());
+            ResponseVO responseVO = preCheck(userForm);
+            if(!responseVO.getSuccess()){
+                return responseVO;
+            }
+            accountMapper.createNewAccount(userForm.getPO());
         } catch (Exception e) {
             return ResponseVO.buildFailure(ACCOUNT_EXIST);
         }
@@ -38,5 +46,130 @@ public class AccountServiceImpl implements AccountService {
         return new UserVO(user);
     }
 
+    /**
+     * 搜索管理员账户
+     * @author zzy
+     * @date 6/10
+     */
+    @Override
+    public ResponseVO searchAllAdmin() {
+        try {
+            return ResponseVO.buildSuccess(userList2UserVOList(accountMapper.selectAllAdmin()));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseVO.buildFailure("失败");
+        }
+    }
 
+    private List<UserVO> userList2UserVOList(List<User> userList) {
+        List<UserVO> userVOList = new ArrayList<>();
+        for (User user : userList) {
+            userVOList.add(new UserVO(user));
+        }
+        return userVOList;
+    }
+
+    /**
+     * 修改账户信息
+     * @author zzy
+     * @date 6/3
+     */
+    @Override
+    public ResponseVO updateAdmin(UserForm userForm){
+        try {
+            ResponseVO responseVO = preCheck(userForm);
+            if(!responseVO.getSuccess()){
+                return responseVO;
+            }
+            accountMapper.updateAdmin(userForm);
+            return ResponseVO.buildSuccess();
+        }catch (Exception e) {
+            e.printStackTrace();
+            return ResponseVO.buildFailure("修改账户失败");
+        }
+    }
+
+    /**
+     * 删除账户
+     * @author zzy
+     * @date 6/3
+     */
+    @Override
+    public ResponseVO deleteAdmin(int id){
+        try {
+            accountMapper.deleteAdmin(id);
+            return ResponseVO.buildSuccess();
+        }catch (Exception e) {
+            e.printStackTrace();
+            return ResponseVO.buildFailure("删除账户失败");
+        }
+    }
+
+    /**
+     * 搜索用户账户
+     * @author zzy
+     * @date 6/10
+     */
+    @Override
+    public ResponseVO searchAllUser() {
+        try {
+            return ResponseVO.buildSuccess(userList2UserVOList(accountMapper.selectAllUser()));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseVO.buildFailure("失败");
+        }
+    }
+
+    /**
+     * 修改账户信息
+     * @author zzy
+     * @date 6/3
+     */
+    @Override
+    public ResponseVO updateUser(UserForm userForm){
+        try {
+            ResponseVO responseVO = preCheck(userForm);
+            if(!responseVO.getSuccess()){
+                return responseVO;
+            }
+            accountMapper.updateUser(userForm);
+            return ResponseVO.buildSuccess();
+        }catch (Exception e) {
+            e.printStackTrace();
+            return ResponseVO.buildFailure("修改账户失败");
+        }
+    }
+
+    /**
+     * 删除账户
+     * @author zzy
+     * @date 6/3
+     */
+    @Override
+    public ResponseVO deleteUser(int id){
+        try {
+            accountMapper.deleteUser(id);
+            return ResponseVO.buildSuccess();
+        }catch (Exception e) {
+            e.printStackTrace();
+            return ResponseVO.buildFailure("删除账户失败");
+        }
+    }
+
+    /**
+     * 新增或修改影厅信息的公共前置检查，判断是否重名
+     * @author zzy
+     * @date 6/3
+     */
+    ResponseVO preCheck(UserForm userForm){
+        try {
+            //检查是否重名
+            if (accountMapper.checkAccountName(userForm.getUsername(), userForm.getId()) == 1){
+                return ResponseVO.buildFailure(NAME_SET_ERROR_MESSAGE);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return ResponseVO.buildSuccess();
+    }
 }

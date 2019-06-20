@@ -26,7 +26,8 @@ $(document).ready(function () {
         return {
             username: $('#signUp-name').val(),
             password: $('#signUp-password').val(),
-            secondPassword: $('#signUp-second-password').val()
+            secondPassword: $('#signUp-second-password').val(),
+            role: 'user'
         };
     }
 

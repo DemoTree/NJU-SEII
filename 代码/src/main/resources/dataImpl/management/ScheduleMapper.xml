@@ -88,6 +88,10 @@
             order by end_time asc
     </select>
 
+    <select id="getBusyHalls" resultType="int">
+        select distinct hall_id from schedule where end_time &gt; current_timestamp()
+    </select>
+
     <resultMap id="ScheduleItem" type="com.example.cinema.po.ScheduleItem">
         <id column="id" property="id"></id>
         <result column="hall_id" property="hallId"></result>

@@ -53,7 +53,7 @@
     </resultMap>
 
     <update id="cleanExpiredTicket">
-        update ticket SET  state =2 WHERE minute(UNIX_TIMESTAMP(now())-UNIX_TIMESTAMP(time))>900 and state=0;
+        update ticket SET  state =2 WHERE UNIX_TIMESTAMP(now())-UNIX_TIMESTAMP(time)>900 and state=0;
     </update>
 
 </mapper>

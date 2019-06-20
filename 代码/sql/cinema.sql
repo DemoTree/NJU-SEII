@@ -132,6 +132,7 @@ CREATE TABLE `hall` (
   `name` varchar(255) DEFAULT NULL,
   `column` int(11) DEFAULT NULL,
   `row` int(11) DEFAULT NULL,
+  `type` int(3) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -142,7 +143,8 @@ CREATE TABLE `hall` (
 
 LOCK TABLES `hall` WRITE;
 /*!40000 ALTER TABLE `hall` DISABLE KEYS */;
-INSERT INTO `hall` VALUES (1,'1号厅',10,5),(2,'2号厅',12,8);
+#1-2D厅 2-3D厅 3-IMAX厅
+INSERT INTO `hall` VALUES (1,'1号厅',10,5,1),(2,'2号厅',12,8,2);
 /*!40000 ALTER TABLE `hall` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -274,6 +276,7 @@ CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
+  `role` varchar(20) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_id_uindex` (`id`),
   UNIQUE KEY `user_username_uindex` (`username`)
@@ -286,7 +289,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'testname','123456'),(3,'test','123456'),(5,'test1','123456'),(7,'test121','123456'),(8,'root','123456'),(10,'roottt','123123'),(12,'zhourui','123456'),(13,'abc123','abc123'),(15,'dd','123');
+INSERT INTO `user` VALUES (1,'testname','123456','user'),(3,'test','123456','user'),(5,'test1','123456','user'),(7,'test121','123456','user'),(8,'root','123456','admin'),(10,'roottt','123123','user'),(12,'zhourui','123456','user'),(13,'abc123','abc123','user'),(15,'dd','123','user'),(16,'admin','123456','admin'),(20,'manager','123456','manager');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 

@@ -12,7 +12,10 @@ $(document).ready(function () {
             });
     }
 
-    // TODO:填空
+    /**
+     * 我的电影票
+     * @param list
+     */
     function renderTicketList(list) {
         list.forEach(function(ticketInfo){
             getRequest(

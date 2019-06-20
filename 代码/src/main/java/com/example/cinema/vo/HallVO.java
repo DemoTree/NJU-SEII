@@ -11,13 +11,30 @@ public class HallVO {
     private String name;
     private Integer row;
     private Integer column;
+    private String type;
 
     public HallVO(Hall hall){
         this.id = hall.getId();
         this.name = hall.getName();
         this.row = hall.getRow();
         this.column = hall.getColumn();
+        String typeString;
+        switch(hall.getType()){
+            case 1:
+                typeString = "2D厅";
+                break;
+            case 2:
+                typeString = "3D厅";
+                break;
+            case 3:
+                typeString = "IMAX厅";
+                break;
+            default:
+                typeString = "默认影厅";
+        }
+        this.type = typeString;
     }
+
 
     public Integer getId() {
         return id;
@@ -49,5 +66,13 @@ public class HallVO {
 
     public void setColumn(Integer column) {
         this.column = column;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

@@ -111,4 +111,12 @@ public interface ScheduleMapper {
      */
     List<ScheduleItem> selectScheduleByMovieId(@Param("movieId") int movieId);
 
+    /**
+     * 获取有排片的影厅
+     * @return
+     * @author zzy
+     * @date 6/3
+     */
+    List<Integer> getBusyHalls();
+
 }

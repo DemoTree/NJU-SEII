@@ -22,4 +22,11 @@ public interface ScheduleServiceForBl {
      * @return
      */
     ScheduleItem getScheduleItemById(int id);
+
+    /**
+     * 获取所有已经排片的影厅
+     * @author zzy
+     * @date 6/3
+     */
+    List<Integer> getBusyHalls();
 }

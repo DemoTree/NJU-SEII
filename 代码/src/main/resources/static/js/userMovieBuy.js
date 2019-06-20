@@ -176,16 +176,7 @@ function orderConfirmClick() {
     function (error) {
     alert(JSON.stringify(error));
 });
-
-
-
-
-
-
-
-
-
-    // TODO:这里是假数据，需要连接后端获取真数据，数据格式可以自行修改，但如果改了格式，别忘了修改renderOrder方法
+    // 这里是假数据，需要连接后端获取真数据，数据格式可以自行修改，但如果改了格式，别忘了修改renderOrder方法
 /*    var orderInfo = {
         "ticketVOList": [{
             "id": 63,
@@ -357,15 +348,6 @@ function payConfirmClick() {
         }
     }
 }
-
-
-
-
-// TODO:填空
-
-
-
-
 
 function postPayRequest() {
 console.log(JSON.stringify(order.ticketId).substring(1,JSON.stringify(order.ticketId).length-1))

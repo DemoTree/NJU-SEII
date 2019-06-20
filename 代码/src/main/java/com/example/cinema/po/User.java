@@ -9,6 +9,15 @@ public class User {
     private String username;
     private String password;
 
+    /**
+     * manager：经理
+     * admin：管理员
+     * user：用户
+     * @author zzy
+     * @date 6/10
+     */
+    private String role;
+
     public Integer getId() {
         return id;
     }
@@ -31,5 +40,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getRole(){
+        return role;
+    }
+
+    public void setRole(String role){
+        this.role = role;
     }
 }
