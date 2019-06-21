@@ -66,4 +66,7 @@ public interface AccountService {
      */
     ResponseVO deleteUser(int id);
 
+    ResponseVO getNamebyId(int id);
+    ResponseVO getVipConsumeforUseHome();
+
 }

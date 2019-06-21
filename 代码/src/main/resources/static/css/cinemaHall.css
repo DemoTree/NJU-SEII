@@ -44,8 +44,3 @@
     border: none;
     outline: none;
 }
-
-.content-header {
-    display: flex;
-    justify-content: space-between;
-}

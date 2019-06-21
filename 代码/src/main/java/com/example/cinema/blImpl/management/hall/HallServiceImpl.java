@@ -22,7 +22,7 @@ public class HallServiceImpl implements HallService, HallServiceForBl {
     private static final String VIEW_CONFLICT_ERROR_MESSAGE = "有排片信息已对观众可见，无法删除或修改";
     private static final String NAME_SET_ERROR_MESSAGE = "有影厅重名，无法删除或修改";
 
-    @Autowired(required=false)
+    @Autowired
     private HallMapper hallMapper;
 
     @Autowired

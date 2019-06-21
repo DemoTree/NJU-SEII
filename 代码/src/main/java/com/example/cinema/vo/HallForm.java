@@ -7,35 +7,35 @@ import com.example.cinema.po.Hall;
  * @Date 2019-05-31
  */
 public class HallForm {
-	/**
-	 * 影厅编号
-	 */
-	private Integer id;
+    /**
+     * 影厅编号
+     */
+    private Integer id;
 
-	/**
-	 * 影厅名称
-	 */
-	private String name;
+    /**
+     * 影厅名称
+     */
+    private String name;
 
-	/**
-	 * 影厅行排数
-	 */
-	private Integer row;
+    /**
+     * 影厅行排数
+     */
+    private Integer row;
 
-	/**
-	 * 影厅列数
-	 */
-	private Integer column;
+    /**
+     * 影厅列数
+     */
+    private Integer column;
 
-	/**
-	 * 影厅种类
-	 */
+    /**
+     * 影厅种类
+     */
 //	private String type;
-	private Integer type;
+    private Integer type;
 
-	public HallForm(){
+    public HallForm(){
 
-	}
+    }
 
 //	public HallForm(Hall hall){
 //		this.id = hall.getId();
@@ -59,37 +59,37 @@ public class HallForm {
 //		this.type = hall.getType();
 //	}
 
-	public Integer getId() {
-		return id;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public Integer getRow() {
-		return row;
-	}
+    public Integer getRow() {
+        return row;
+    }
 
-	public void setRow(Integer row) {
-		this.row = row;
-	}
+    public void setRow(Integer row) {
+        this.row = row;
+    }
 
-	public Integer getColumn() {
-		return column;
-	}
+    public Integer getColumn() {
+        return column;
+    }
 
-	public void setColumn(Integer column) {
-		this.column = column;
-	}
+    public void setColumn(Integer column) {
+        this.column = column;
+    }
 
 //	public String getType() {
 //		return type;
@@ -99,11 +99,11 @@ public class HallForm {
 //		this.type = type;
 //	}
 
-	public Integer getType() {
-	return type;
-}
+    public Integer getType() {
+        return type;
+    }
 
-	public void setType(Integer type) {
-		this.type = type;
-	}
+    public void setType(Integer type) {
+        this.type = type;
+    }
 }

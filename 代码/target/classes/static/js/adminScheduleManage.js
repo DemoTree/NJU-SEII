@@ -122,11 +122,7 @@ $(document).ready(function() {
         $('#scheduleEditModal')[0].dataset.scheduleId = schedule.id;
         console.log(schedule);
     });
-
-
-    /**
-     * 添加排片
-     */
+    
     $('#schedule-form-btn').click(function () {
         var form = {
             hallId: $("#schedule-hall-input").children('option:selected').val(),
@@ -135,7 +131,7 @@ $(document).ready(function() {
             endTime: $("#schedule-end-date-input").val(),
             fare: $("#schedule-price-input").val()
         };
-        //需要做一下表单验证？
+        //todo 需要做一下表单验证？
         if(!validSchedule(form)) {
             return;
         }
@@ -218,9 +214,6 @@ $(document).ready(function() {
         return isValidate;
     }
 
-    /**
-     * 修改排片
-     */
     $('#schedule-edit-form-btn').click(function () {
         var form = {
             id: Number($('#scheduleEditModal')[0].dataset.scheduleId),
@@ -230,7 +223,7 @@ $(document).ready(function() {
             endTime: $("#schedule-edit-end-date-input").val(),
             fare: $("#schedule-edit-price-input").val()
         };
-        //需要做一下表单验证？
+        //todo 需要做一下表单验证？
         if(!validScheduleEdit(form)) {
             return;
         }

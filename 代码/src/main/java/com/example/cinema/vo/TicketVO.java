@@ -28,6 +28,12 @@ public class TicketVO {
      */
     private int rowIndex;
 
+    private double price;
+
+    private boolean ifUseVIP;
+
+    private boolean isOut;
+
     /**
      * 订单状态
      */
@@ -92,5 +98,29 @@ public class TicketVO {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public double getPrice(){
+        return price;
+    }
+
+    public void setPrice(double price){
+        this.price=price;
+    }
+
+    public boolean getIfUseVIP(){
+        return ifUseVIP;
+    }
+
+    public void setIfUseVIP(boolean VIP){
+        this.ifUseVIP=VIP;
+    }
+
+    public boolean getIsOut(){
+        return isOut;
+    }
+
+    public void setIsOut(boolean isOut){
+        this.isOut=isOut;
     }
 }

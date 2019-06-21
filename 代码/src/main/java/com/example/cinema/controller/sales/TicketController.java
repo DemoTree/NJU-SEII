@@ -44,6 +44,21 @@ public class TicketController {
         return ticketService.cancelTicket(ticketId);
     }
 
+    @GetMapping("/consumehistory/{userId}")
+    public ResponseVO getConsumeHistoryByUserId(@PathVariable int userId){
+        return ticketService.getConsumeHistorybyUser(userId);
+    }
+
+	@PostMapping("/out")
+	public ResponseVO outTicket(@RequestParam int ticketId){
+		return ticketService.outTicket(ticketId);
+	}
+
+	@PostMapping("/refund")
+	public ResponseVO refundTicket(@RequestParam int ticketId){
+		return ticketService.refundTicket(ticketId);
+	}
+
 
 
 

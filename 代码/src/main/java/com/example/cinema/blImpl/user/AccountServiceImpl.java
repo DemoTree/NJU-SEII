@@ -1,11 +1,14 @@
 package com.example.cinema.blImpl.user;
 
 import com.example.cinema.bl.user.AccountService;
+import com.example.cinema.data.promotion.VIPCardMapper;
 import com.example.cinema.data.user.AccountMapper;
 import com.example.cinema.po.User;
+import com.example.cinema.po.VipConsume;
 import com.example.cinema.vo.UserForm;
 import com.example.cinema.vo.ResponseVO;
 import com.example.cinema.vo.UserVO;
+import com.example.cinema.vo.VipConsumeForUserHomeVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +25,8 @@ public class AccountServiceImpl implements AccountService {
     private final static String ACCOUNT_EXIST = "账号已存在";
     @Autowired
     private AccountMapper accountMapper;
+    @Autowired
+    private VIPCardMapper vipCardMapper;
 
     @Override
     public ResponseVO registerAccount(UserForm userForm) {
@@ -156,6 +161,17 @@ public class AccountServiceImpl implements AccountService {
         }
     }
 
+
+    @Override
+    public ResponseVO getNamebyId(int id){
+        try {
+            return ResponseVO.buildSuccess(accountMapper.getNamebyId(id));
+        }catch (Exception e) {
+            e.printStackTrace();
+            return ResponseVO.buildFailure("删除账户失败");
+        }
+    }
+
     /**
      * 新增或修改影厅信息的公共前置检查，判断是否重名
      * @author zzy
@@ -172,4 +188,35 @@ public class AccountServiceImpl implements AccountService {
         }
         return ResponseVO.buildSuccess();
     }
+
+    @Override
+    public ResponseVO getVipConsumeforUseHome(){
+        try {
+            List<VipConsume>vipConsumes= vipCardMapper.selectVipConsumebyMoney(0);
+            VipConsumeForUserHomeVO vo=new VipConsumeForUserHomeVO();
+            List<VipConsumeForUserHomeVO> consumes=new ArrayList<>();
+            for (int i=0;i<vipConsumes.size()&&i<10;i++){
+                vo.setName(accountMapper.getNamebyId(vipConsumes.get(i).getUserId()).getUsername());
+                vo.setConsume(vipConsumes.get(i).getConsume());
+                vo.setUserId(vipConsumes.get(i).getUserId());
+                vo.setVipId(vipConsumes.get(i).getVipId());
+                consumes.add(vo);
+            }
+            return ResponseVO.buildSuccess(consumes);
+
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            return ResponseVO.buildFailure("删除账户失败");
+        }
+    }
+
+
+
+
+
+
 }
+
+
+

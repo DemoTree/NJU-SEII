@@ -23,7 +23,7 @@ public class AccountController {
     public ResponseVO login(@RequestBody UserForm userForm, HttpSession session){
         UserVO user = accountService.login(userForm);
         if(user==null){
-           return ResponseVO.buildFailure(ACCOUNT_INFO_ERROR);
+            return ResponseVO.buildFailure(ACCOUNT_INFO_ERROR);
         }
         //注册session
         session.setAttribute(InterceptorConfiguration.SESSION_KEY,userForm);
@@ -33,6 +33,18 @@ public class AccountController {
     public ResponseVO registerAccount(@RequestBody UserForm userForm){
         return accountService.registerAccount(userForm);
     }
+
+
+
+
+    @GetMapping("/getvipconsumeforuserhome")
+    public ResponseVO getVipConsumeForUserHome(){
+        return accountService.getVipConsumeforUseHome();
+    }
+
+
+
+
 
     @PostMapping("/logout")
     public String logOut(HttpSession session){

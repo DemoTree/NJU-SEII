@@ -20,6 +20,7 @@ function getVIP() {
                 $("#member-id").text(res.content.id);
                 $("#member-balance").text("¥" + res.content.balance.toFixed(2));
                 $("#member-joinDate").text(res.content.joinDate.substring(0, 10));
+
             } else {
                 // 非会员
                 $("#member-card").css("display", "none");
@@ -30,13 +31,16 @@ function getVIP() {
             alert(error);
         });
 
-    getRequest(
-        '/vip/getVIPInfo',
+    postRequest(
+        '/vip/getVIPInfo?userId='+ sessionStorage.getItem('id'),
+        null,
         function (res) {
             if (res.success) {
                 $("#member-buy-price").text(res.content.price);
                 $("#member-buy-description").text("充值优惠：" + res.content.description + "。永久有效");
                 $("#member-description").text(res.content.description);
+                console.log(res.content.level)
+                $("#level").text(res.content.level)
             } else {
                 alert(res.content);
             }

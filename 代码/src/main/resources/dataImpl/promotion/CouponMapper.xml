@@ -28,6 +28,11 @@
 
     </select>
 
+    <select id="selectAllCoupons" resultMap="Coupon">
+        select * from coupon where start_time &lt; Now() and end_time > Now()
+
+    </select>
+
     <resultMap id="Coupon" type="com.example.cinema.po.Coupon">
         <result column="description" property="description"></result>
         <result column="id" property="id"></result>

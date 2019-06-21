@@ -1,5 +1,6 @@
 package com.example.cinema.data.sales;
 
+import com.example.cinema.po.ConsumeHistory;
 import com.example.cinema.po.Ticket;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -12,6 +13,10 @@ import java.util.List;
  */
 @Mapper
 public interface TicketMapper {
+    int insertConsumeHistory(ConsumeHistory consumeHistory);
+    int insertConsumeHistorys(List<ConsumeHistory> consumeHistorys);
+    void deleteConsumeHistory(int id);
+    List<ConsumeHistory> selectConsumeHistorysByUser(int userId);
 
     int insertTicket(Ticket ticket);
 
@@ -20,6 +25,12 @@ public interface TicketMapper {
     void deleteTicket(int ticketId);
 
     void updateTicketState(@Param("ticketId") int ticketId, @Param("state") int state);
+
+    void updateTicketPrice(@Param("ticketId") int ticketId,@Param("price") double price);
+
+    void updateTicketBuyway(@Param("ticketId") int ticketId,@Param("ifUseVIP") boolean ifUseVIP);
+
+    void updateTicketOut(@Param("ticketId") int ticketId,@Param("isOut") boolean isOut);
 
     List<Ticket> selectTicketsBySchedule(int scheduleId);
 

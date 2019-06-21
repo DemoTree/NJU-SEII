@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>会员赠券</title>
+    <link rel="stylesheet" type="text/css" href="/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/adminVipCoupon.css"/>
+
+
+    <script src="/js/jquery.js"></script>
+    <script src="/js/bootstrap.js"></script>
+    <script src="/js/request.js"></script>
+    <script src="/js/adminVipCoupon.js"></script>
+
+</head>
+<body>
+<div class="main-container">
+    <div class="nav-left-container">
+        <div class="nav-user-container" style="margin-bottom: 50px;">
+            <img class="avatar-lg" src="/images/defaultAvatar.jpg" />
+            <p class="title">Admin</p>
+        </div>
+        <ul class="nav nav-pills nav-stacked">
+            <li role="presentation"><a href="/admin/movie/manage"><i class="icon-film"></i> 电影管理</a></li>
+            <li role="presentation"><a href="/admin/session/manage"><i class="icon-calendar"></i> 排片管理</a></li>
+            <li role="presentation"><a href="/admin/promotion/manage"><i class="icon-gift"></i> 活动管理</a></li>
+            <li role="presentation"><a href="/admin/cinema/manage"><i class="icon-cogs"></i> 影院管理</a></li>
+            <li role="presentation"><a href="/admin/cinema/statistic"><i class="icon-bar-chart"></i> 影院统计</a></li>
+            <li role="presentation"><a href="/admin/refund/manage"><i class="icon-cogs"></i> 退票管理</a></li>
+            <li role="presentation"><a href="/admin/vipStrategy/manage"><i class="icon-cogs"></i> 会员策略</a></li>
+            <li role="presentation" class="active"><a href="#"><i class="icon-gift"></i> 会员赠券</a></li>
+        </ul>
+    </div>
+    <div class="content-container">
+        <input type="text" id="money" value="" placeholder="请输入金额，系统将筛选出消费金额大于此的会员">
+        <button id="btnclick" class="btn btn-primary">确认</button>
+        <div class="content-coupon">
+
+        </div>
+        <div style=" width:100%; text-align:center">
+            <hr style=" width:50%; display:inline-block; border-top: 4px solid #00ff00;"/><hr style=" width:50%; display:inline-block; border-top: 4px solid #00ff00;" />
+        </div>
+
+        <div class="content-activity">
+
+        </div>
+        <button id="checkuser" class="btn btn-primary">确认</button>
+    </div>
+</div>
+
+</body>
+</html>

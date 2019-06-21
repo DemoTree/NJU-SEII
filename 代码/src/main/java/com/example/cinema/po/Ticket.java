@@ -30,7 +30,18 @@ public class Ticket {
      * 排号
      */
     private int rowIndex;
-
+    /**
+     * 实际价钱
+     */
+    private double price;
+    /**
+     * 是否用会员卡
+     */
+    private boolean ifUseVIP;
+    /**
+     * 是否出票
+     */
+    private boolean isOut;
     /**
      * 订单状态：
      * 0：未完成 1：已完成 2:已失效
@@ -58,6 +69,9 @@ public class Ticket {
         vo.setScheduleId(this.getScheduleId());
         vo.setId(this.getId());
         vo.setUserId(this.getUserId());
+        vo.setPrice(this.getPrice());
+        vo.setIfUseVIP(this.getIfUseVIP());
+        vo.setIsOut(this.getIsOut());
         String stateString;
         switch (state) {
             case 0:
@@ -68,6 +82,9 @@ public class Ticket {
                 break;
             case 2:
                 stateString = "已失效";
+                break;
+            case 3:
+                stateString = "已退票";
                 break;
             default:
                 stateString = "未完成";
@@ -83,6 +100,9 @@ public class Ticket {
         vo.setColumnIndex(this.getColumnIndex());
         vo.setId(this.getId());
         vo.setUserId(this.getUserId());
+        vo.setPrice(this.getPrice());
+        vo.setIfUseVIP(this.getIfUseVIP());
+        vo.setIsOut(this.getIsOut());
         String stateString;
         switch (state) {
             case 0:
@@ -93,6 +113,9 @@ public class Ticket {
                 break;
             case 2:
                 stateString = "已失效";
+                break;
+            case 3:
+                stateString = "已退票";
                 break;
             default:
                 stateString = "未完成";
@@ -149,5 +172,29 @@ public class Ticket {
 
     public void setState(int state) {
         this.state = state;
+    }
+
+    public double getPrice(){
+        return price;
+    }
+
+    public void setPrice(double price){
+        this.price=price;
+    }
+
+    public boolean getIfUseVIP(){
+        return ifUseVIP;
+    }
+
+    public void setIfUseVIP(boolean VIP){
+        this.ifUseVIP=VIP;
+    }
+
+    public boolean getIsOut(){
+        return isOut;
+    }
+
+    public void setIsOut(boolean isOut){
+        this.isOut=isOut;
     }
 }

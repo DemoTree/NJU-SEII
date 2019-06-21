@@ -151,15 +151,11 @@ public class ScheduleServiceImpl implements ScheduleService, ScheduleServiceForB
         }
     }
 
-    /**
-     * 获取所有已经排片的影厅
-     * @author zzy
-     * @date 6/3
-     */
     @Override
     public List<Integer> getBusyHalls() {
         return scheduleMapper.getBusyHalls();
     }
+
 
     @Override
     public ResponseVO searchScheduleSevenDays(int hallId, Date startDate) {

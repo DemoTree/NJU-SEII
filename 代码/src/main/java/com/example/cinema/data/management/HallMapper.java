@@ -47,7 +47,10 @@ public interface HallMapper {
     int deleteHall(HallForm hallform);
 
     /**
-     * 检查重名影厅
+     * 查看是否有同名的影厅存在，但不包括当前id影厅
+     * @param hallName
+     * @param hallId 排除的影厅id
+     * @return 重名个数
      * @author zzy
      * @date 6/3
      */

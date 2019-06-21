@@ -23,6 +23,13 @@ public class CouponController {
         return couponService.getCouponsByUser(userId);
     }
 
+    @GetMapping("/getall")
+    public ResponseVO getAllCoupons(){
+        return couponService.getAllCoupons();
+    }
+
+
+
 
 
 }

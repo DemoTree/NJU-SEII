@@ -48,6 +48,11 @@ public class ViewController {
     @RequestMapping(value = "/admin/movieDetail")
     public String getAdminMovieDetail(@RequestParam int id) { return "adminMovieDetail"; }
 
+    @RequestMapping(value = "/admin/refund/manage")
+    public String getAdminRefundManage() {
+        return "adminRefundManage";
+    }
+
     @RequestMapping(value = "/user/home")
     public String getUserHome() {
         return "userHome";
@@ -78,13 +83,35 @@ public class ViewController {
         return "userMember";
     }
 
+
+    @RequestMapping(value = "/user/consumeHistory")
+    public String getUserConsumeHistory() {
+        return "userConsumeHistory";
+    }
+
+    @RequestMapping(value = "/user/rechangeRecord")
+    public String getUserRechangeRecord() {
+        return "userRechangeRecord";
+    }
+
+
+    @RequestMapping(value = "/admin/vipStrategy/manage")
+    public String getAdminVipStrategyMange() {
+        return "adminVipStrategy";
+    }
+
+    @RequestMapping(value = "/admin/vipCoupon")
+    public String getVipCoupon() {
+        return "adminVipCoupon";
+    }
+
     @RequestMapping(value = "/manager/admin")
     public String getManagerAdminManage() {
         return "managerAdminManage";
     }
 
-	@RequestMapping(value = "/manager/user")
-	public String getManagerUserManage() {
-		return "managerUserManage";
-	}
+    @RequestMapping(value = "/manager/user")
+    public String getManagerUserManage() {
+        return "managerUserManage";
+    }
 }

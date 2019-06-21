@@ -9,9 +9,9 @@ import java.sql.Timestamp;
 
 public class VIPCard {
 
-    public static final double price = 25;
+    public static  double price = 25;
 
-    public static final String description="满200送30";
+    public static  String description="满200送30";
 
     /**
      * 用户id
@@ -33,6 +33,18 @@ public class VIPCard {
      */
     private Timestamp joinDate;
 
+
+
+    private int viptype;
+
+
+    public int getViptype() {
+        return viptype;
+    }
+
+    public void setViptype(int viptype) {
+        this.viptype = viptype;
+    }
 
     public VIPCard() {
 
@@ -71,8 +83,8 @@ public class VIPCard {
         this.joinDate = joinDate;
     }
 
-    public double calculate(double amount) {
-        return (int)(amount/200)*30+amount;
+    public double calculate(double amount,double basis,double addition) {
+        return (int)(amount/basis)*addition+amount;
 
     }
 }

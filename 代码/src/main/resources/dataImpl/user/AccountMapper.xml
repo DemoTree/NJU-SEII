@@ -11,6 +11,10 @@
         select * from user where username=#{username}
     </select>
 
+    <select id="getNamebyId" resultMap="User">
+        select * from user where id=#{id}
+    </select>
+
     <select id="selectAllAdmin" resultMap="User">
         select * from user where role = 'admin'
     </select>

@@ -11,6 +11,16 @@ public class VIPInfoVO {
 
     double price;
 
+    String level;
+
+    public String getLevel() {
+        return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
+    }
+
     public String getDescription() {
         return description;
     }

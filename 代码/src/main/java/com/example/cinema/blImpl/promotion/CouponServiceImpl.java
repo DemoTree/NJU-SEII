@@ -56,4 +56,15 @@ public class CouponServiceImpl implements CouponService {
         }
 
     }
+
+    @Override
+    public ResponseVO getAllCoupons() {
+        try {
+          return ResponseVO.buildSuccess(couponMapper.selectAllCoupons());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseVO.buildFailure("失败");
+        }
+
+    }
 }

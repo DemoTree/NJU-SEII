@@ -7,17 +7,110 @@
         values(#{userId}, #{balance})
     </insert>
 
+    <insert id="insertRechangeRecord" parameterType="com.example.cinema.po.RechangeRecord"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into rechangerecord(user_id,amount_money,consume_cardid,balance,bonus)
+        values(#{userId},#{amountOfMoney},#{consumeCardId},#{balance},#{bonus})
+    </insert>
+
+    <insert id="insertVipStrategy" parameterType="com.example.cinema.po.VipStrategy"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into vip_strategy(vip_type,vip_basis,vip_addition,vip_cell)
+        values(#{viptype},#{basis},#{addition},#{cell})
+    </insert>
+
+    <insert id="insertVipConsume" parameterType="com.example.cinema.po.VipConsume">
+        insert into vip_consume(user_id,vip_id,total_consume)
+        values(#{userId},#{vipId},#{consume})
+    </insert>
+
+    <insert id="addVipCoupon">
+        insert into coupon_user(user_id,coupon_id)
+        values(#{userId},#{couponId})
+    </insert>
+
+
+
+    <insert id="insertRechangeRecords" parameterType="java.util.List"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into rechangerecord(user_id,amount_money,consume_cardid,balance,bonus)
+        values
+        <foreach collection="list" item="item" index="index"
+                 separator=",">
+            (#{item.userId},#{item.amountOfMoney},#{item.consumeCardId},#{item.balance},#{item.bonus})
+        </foreach>
+
+    </insert>
+
     <select id="selectCardById" resultMap="VIPCard">
         select * from vip_card where id=#{id}
     </select>
+
+
 
     <select id="selectCardByUserId" resultMap="VIPCard">
         select * from vip_card where user_id=#{userId}
     </select>
 
+    <select id="selectAllCard" resultMap="VIPCard">
+        select * from vip_card
+    </select>
+
+    <select id="selectRechangeRecordbyUser" resultMap="RechangeRecord">
+        select * from rechangerecord where user_id=#{userId}
+    </select>
+
+    <select id="selectLastVipStrategy" resultMap="VipStrategy">
+        select * from vip_strategy
+    </select>
+
+    <select id="selectVipStrategybyViptype" resultMap="VipStrategy">
+        select * from vip_strategy where vip_type=#{viptype}
+    </select>
+
+    <select id="selectVipConsumebyVip" resultMap="VipConsume">
+        select * from vip_consume where vip_id=#{vipId}
+    </select>
+
+    <select id="selectVipConsumebyMoney" resultMap="VipConsume">
+        select * from vip_consume  where total_consume>=#{money} order by total_consume
+    </select>
+
+    <select id="trueselectlaststrategy" resultMap="VipStrategy">
+        SELECT * from vip_strategy WHERE vip_type IN (SELECT MAX(vip_type) from vip_strategy)
+    </select>
+
+
+    <resultMap id="VipConsume" type="com.example.cinema.po.VipConsume">
+        <result column="user_id" property="userId"></result>
+        <result column="vip_id" property="vipId"></result>
+        <result column="total_consume" property="consume"></result>
+    </resultMap>
+
+
+    <resultMap id="VipStrategy" type="com.example.cinema.po.VipStrategy">
+        <result column="id" property="id"></result>
+        <result column="vip_basis" property="basis"></result>
+        <result column="vip_addition" property="addition"></result>
+        <result column="vip_cell" property="cell"></result>
+        <result column="vip_type" property="viptype"></result>
+    </resultMap>
+
+
+    <resultMap id="RechangeRecord" type="com.example.cinema.po.RechangeRecord">
+        <result column="amount_money" property="amountOfMoney"></result>
+        <result column="id" property="id"></result>
+        <result column="user_id" property="userId"></result>
+        <result column="rechange_time" property="rechangeTime"></result>
+        <result column="consume_cardid" property="consumeCardId"></result>
+        <result column="balance" property="balance"></result>
+        <result column="bonus" property="bonus"></result>
+    </resultMap>
+
     <resultMap id="VIPCard" type="com.example.cinema.po.VIPCard">
         <result column="join_time" property="joinDate"></result>
         <result column="id" property="id"></result>
+        <result column="vip_type" property="viptype"></result>
         <result column="user_id" property="userId"></result>
         <result column="balance" property="balance"></result>
     </resultMap>
@@ -25,6 +118,33 @@
     <update id="updateCardBalance" >
         update vip_card set balance = #{balance} where id=#{id}
     </update>
+
+
+    <update id="updateViptype" >
+        update vip_card set vip_type = #{type} where user_id=#{userId}
+    </update>
+
+    <update id="updateVipConsume" >
+        update vip_consume set total_consume = #{consume} where vip_id=#{vipId}
+    </update>
+
+    <delete id="deleteRechangeRecord">
+        delete from rechangerecord where id=#{id}
+    </delete>
+
+    <delete id="deleteVipStrategy">
+        delete from vip_strategy
+    </delete>
+
+    <delete id="deleteVipConsume">
+        delete from vip_consume where vip_id=#{vipId}
+    </delete>
+
+
+    <update id="updateVipStrategy" >
+        update vip_strategy set vip_cell = #{cell},vip_basis=#{basis},vip_addition=#{addition} where vip_type=#{type}
+    </update>
+
 
 
 </mapper>

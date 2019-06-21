@@ -76,4 +76,6 @@ public interface AccountMapper {
      */
     int checkAccountName(String username, int id);
 
+    User getNamebyId(int id);
+
 }

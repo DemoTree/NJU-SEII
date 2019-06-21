@@ -23,4 +23,5 @@ public interface CouponMapper {
     void deleteCouponUser(@Param("couponId") int couponId,@Param("userId")int userId);
 
     List<Coupon> selectCouponByUserAndAmount(@Param("userId") int userId,@Param("amount") double amount);
+    List<Coupon> selectAllCoupons();
 }

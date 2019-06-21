@@ -3,16 +3,34 @@
 <mapper namespace="com.example.cinema.data.sales.TicketMapper">
     <insert id="insertTicket" parameterType="com.example.cinema.po.Ticket"
             useGeneratedKeys="true" keyProperty="id">
-        insert into ticket(user_id,schedule_id,column_index,row_index,state)
-        values(#{userId}, #{scheduleId},#{columnIndex},#{rowIndex},#{state})
+        insert into ticket(user_id,schedule_id,column_index,row_index,state,price,if_UseVIP,is_Out)
+        values(#{userId}, #{scheduleId},#{columnIndex},#{rowIndex},#{state},#{price},#{ifUseVIP},#{isOut})
     </insert>
+
+    <insert id="insertConsumeHistory" parameterType="com.example.cinema.po.ConsumeHistory"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into consumehistory(user_id,amount_money,consume_type,consume_way,consume_cardid)
+        values(#{userId},#{amountOfMoney},#{consumeType},#{consumeWay},#{consumeCardId})
+    </insert>
+
     <insert id="insertTickets" parameterType="java.util.List"
             useGeneratedKeys="true" keyProperty="id">
-        insert into ticket(user_id,schedule_id,column_index,row_index,state)
+        insert into ticket(user_id,schedule_id,column_index,row_index,state,price,if_UseVIP,is_Out)
         values
         <foreach collection="list" item="item" index="index"
                  separator=",">
-            (#{item.userId}, #{item.scheduleId},#{item.columnIndex},#{item.rowIndex},#{item.state})
+            (#{item.userId}, #{item.scheduleId},#{item.columnIndex},#{item.rowIndex},#{item.state},#{item.price},#{item.ifUseVIP},#{item.isOut})
+        </foreach>
+
+    </insert>
+
+    <insert id="insertConsumeHistorys" parameterType="java.util.List"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into consumehistory(user_id,amount_money,consume_type,consume_way,consume_cardid)
+        values
+        <foreach collection="list" item="item" index="index"
+                 separator=",">
+            (#{item.userId},#{item.amountOfMoney},#{item.consumeType},#{item.consumeWay},#{item.consumeCardId})
         </foreach>
 
     </insert>
@@ -34,12 +52,33 @@
     </select>
 
 
+    <select id="selectConsumeHistorysByUser" resultMap="ConsumeHistory">
+        select * from consumehistory where user_id=#{userId}
+    </select>
+
+
     <update id="updateTicketState">
         update ticket set state = #{state} where id=#{ticketId}
     </update>
 
+    <update id="updateTicketPrice">
+        update ticket set price = #{price} where id=#{ticketId}
+    </update>
+
+    <update id="updateTicketBuyway">
+        update ticket set if_UseVIP = #{ifUseVIP} where id=#{ticketId}
+    </update>
+
+    <update id="updateTicketOut">
+        update ticket set is_Out = #{isOut} where id=#{ticketId}
+    </update>
+
     <delete id="deleteTicket">
         delete from ticket where id=#{ticketId}
+    </delete>
+
+    <delete id="deleteConsumeHistory">
+        delete from consumehistory where id=#{id}
     </delete>
 
     <resultMap id="Ticket" type="com.example.cinema.po.Ticket">
@@ -50,6 +89,19 @@
         <result column="row_index" property="rowIndex"></result>
         <result column="state" property="state"></result>
         <result column="time" property="time"></result>
+        <result column="price" property="price"></result>
+        <result column="if_UseVIP" property="ifUseVIP"></result>
+        <result column="is_Out" property="isOut"></result>
+    </resultMap>
+
+    <resultMap id="ConsumeHistory" type="com.example.cinema.po.ConsumeHistory">
+        <result column="amount_money" property="amountOfMoney"></result>
+        <result column="id" property="id"></result>
+        <result column="user_id" property="userId"></result>
+        <result column="consume_time" property="consumeTime"></result>
+        <result column="consume_type" property="consumeType"></result>
+        <result column="consume_way" property="consumeWay"></result>
+        <result column="consume_cardid" property="consumeCardId"></result>
     </resultMap>
 
     <update id="cleanExpiredTicket">

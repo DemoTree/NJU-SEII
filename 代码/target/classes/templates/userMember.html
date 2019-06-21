@@ -36,6 +36,7 @@
         </button>
         <ul class="dropdown-menu">
             <li><a href="/user/buy">电影票</a></li>
+            <li><a href="/user/consumeHistory">消费纪录</a></li>
             <li><a href="#">卡包</a></li>
             <li id="logout"><a href="#">登出</a></li>
         </ul>
@@ -69,6 +70,10 @@
             <div>会员信息</div>
             <hr/>
         </div>
+        <div class="line">
+            <div id="level"></div>
+            <hr/>
+        </div>
         <div class="info">
             <div class="content">
                 <div class="line">
@@ -89,6 +94,7 @@
                 <div class="line">
                     <div><b>余额：</b></div>
                     <div id="member-balance"></div>
+                    <a href="/user/rechangeRecord">充值纪录</a>
                 </div>
             </div>
             <button onclick="chargeClick()">立即充值</button>
