@@ -439,18 +439,12 @@ DROP TABLE IF EXISTS `refund`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `refund`(
-`id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) default null,
 `time` int(11) DEFAULT NULL,
-`persent` float DEFAULT null,
-primary key (`id`)
+`persent` float DEFAULT null
 )ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 --
 -- Dumping data for table `refund`
 --
-LOCK TABLES `refund` WRITE;
-/*!40000 ALTER TABLE `refund` DISABLE KEYS */;
-INSERT INTO `refund` VALUES (1,30,0.5);
-/*!40000 ALTER TABLE `refund` ENABLE KEYS */;
-UNLOCK TABLES;
 

@@ -10,6 +10,7 @@ import com.example.cinema.vo.ResponseVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import com.example.cinema.po.Refund;
 
 @Service
 public class RefundServiceImpl implements RefundService {
@@ -20,7 +21,16 @@ public class RefundServiceImpl implements RefundService {
     @Transactional
     public ResponseVO setRefund(RefundForm refundForm){
         try{
-            refundMapper.updateRefund(1,refundForm.getTime(),refundForm.getPersent());
+            if(refundMapper.getRefund(1)==null){
+                Refund refund=new Refund();
+                refund.setId(1);
+                refund.setPersent(refundForm.getPersent());
+                refund.setTime(refundForm.getTime());
+                refundMapper.insertRefund(refund);
+            }
+            else{
+                refundMapper.updateRefund(1,refundForm.getTime(),refundForm.getPersent());
+            }
             return ResponseVO.buildSuccess();
         }catch (Exception e){
             e.printStackTrace();

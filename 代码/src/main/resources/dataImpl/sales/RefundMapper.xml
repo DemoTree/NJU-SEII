@@ -4,8 +4,8 @@
 
     <insert id="insertRefund" parameterType="com.example.cinema.po.Refund"
             useGeneratedKeys="true" keyProperty="id">
-        insert into refund(time,persent)
-        values(#{time}, #{persent})
+        insert into refund(id,time,persent)
+        values(#{id},#{time}, #{persent})
     </insert>
 
     <update id="updateRefund">
