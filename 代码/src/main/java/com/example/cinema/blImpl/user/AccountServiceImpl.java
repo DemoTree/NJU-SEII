@@ -19,6 +19,7 @@ import java.util.List;
  * @author huwen
  * @date 2019/3/23
  */
+
 @Service
 public class AccountServiceImpl implements AccountService {
     private static final String NAME_SET_ERROR_MESSAGE = "有账号重名，无法删除或修改";
@@ -195,6 +196,7 @@ public class AccountServiceImpl implements AccountService {
             List<VipConsume>vipConsumes= vipCardMapper.selectVipConsumebyMoney(0);
             VipConsumeForUserHomeVO vo=new VipConsumeForUserHomeVO();
             List<VipConsumeForUserHomeVO> consumes=new ArrayList<>();
+            //获取消费记录并且添加上用户名后返回
             for (int i=0;i<vipConsumes.size()&&i<10;i++){
                 vo.setName(accountMapper.getNamebyId(vipConsumes.get(i).getUserId()).getUsername());
                 vo.setConsume(vipConsumes.get(i).getConsume());

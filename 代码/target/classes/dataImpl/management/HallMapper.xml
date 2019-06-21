@@ -24,7 +24,7 @@
     <delete id="deleteHall">
         delete
         from hall
-        where id = #{hallId}
+        where id = #{id}
     </delete>
 
     <select id="checkHallName" resultType="int">

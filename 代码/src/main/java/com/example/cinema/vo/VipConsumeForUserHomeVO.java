@@ -4,8 +4,8 @@ public class VipConsumeForUserHomeVO {
 
     private int userId;
     private int vipId;
-    private double consume;
-    private String name;
+    private double consume;//会员消费总额
+    private String name;//用户名
 
     public int getUserId() {
         return userId;

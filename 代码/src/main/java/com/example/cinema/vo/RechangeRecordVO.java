@@ -5,11 +5,11 @@ import java.sql.Timestamp;
 public class RechangeRecordVO {
     private int id;
     private int userId;
-    private double amountOfMoney;
-    private Timestamp rechangeTime;
-    private int consumeCardId;
-    private double balance;
-    private double bonus;
+    private double amountOfMoney;//充值总额
+    private Timestamp rechangeTime;//充值时间
+    private int consumeCardId;//用于消费的会员卡/银行卡号
+    private double balance;//余额
+    private double bonus;//赠送金额
     public RechangeRecordVO(){
 
     }

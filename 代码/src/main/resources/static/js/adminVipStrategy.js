@@ -1,10 +1,18 @@
-var whichtype;
+/**
+ * @author 蔡明卫
+ * @date 6/1
+ */
 
+
+
+
+var whichtype;
 $(document).ready(function() {
 
 
     getStrategys();
 
+    //获取优惠策略
     function getStrategys() {
         getRequest(
             '/vip/getLastVipStrategy',
@@ -18,6 +26,7 @@ $(document).ready(function() {
         );
     }
 
+    //渲染
     function renderStrategys(strategys) {
         $(".content-activity").empty();
         var activitiesDomStr = "";
@@ -71,14 +80,13 @@ $(document).ready(function() {
     }
 
 
-
+    //新添优惠策略
     $("#activity-form-btn").click(function () {
         var form = {
             basis: $("#activity-description-input").val(),
             addition: $("#activity-start-date-input").val(),
             cell:$("#activity-end-date-input").val(),
         };
-
         postRequest(
             '/vip/addVipStrategy',
             form,
@@ -96,17 +104,7 @@ $(document).ready(function() {
         );
     });
 
-
-
-
-
-
-
-
-
-
-
-
+    //修改优惠策略
     $("#activity-form-btn2").click(function (e) {
 
         var form = {

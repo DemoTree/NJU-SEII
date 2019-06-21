@@ -140,6 +140,10 @@
         delete from vip_consume where vip_id=#{vipId}
     </delete>
 
+    <delete id="deleteCardById">
+        delete from vip_card where id=#{id}
+    </delete>
+
 
     <update id="updateVipStrategy" >
         update vip_strategy set vip_cell = #{cell},vip_basis=#{basis},vip_addition=#{addition} where vip_type=#{type}

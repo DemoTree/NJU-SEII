@@ -59,7 +59,10 @@ public interface TicketService {
      * @return
      */
     ResponseVO cancelTicket(List<Integer> id);
+
     ResponseVO getConsumeHistorybyUser(int userId);
+
     ResponseVO outTicket(int ticketId);
+
     ResponseVO refundTicket(int ticketId);
 }

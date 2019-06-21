@@ -4,11 +4,11 @@ import com.example.cinema.vo.VipStrategyVO;
 
 public class VipStrategy {
     private int id;
-    private double price;
-    private double basis;
-    private double addition;
-    private int viptype;
-    private double cell;
+    private double price;//会员卡价格
+    private double basis;//基础充值金额
+    private double addition;//满赠金额
+    private int viptype;//会员卡类型
+    private double cell;//会员卡升级上限
 
     public double getCell() {
         return cell;

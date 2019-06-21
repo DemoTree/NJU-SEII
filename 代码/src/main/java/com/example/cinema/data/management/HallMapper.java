@@ -44,7 +44,7 @@ public interface HallMapper {
      * @author zzy
      * @date 5/31
      */
-    int deleteHall(HallForm hallform);
+    int deleteHall(int id);
 
     /**
      * 查看是否有同名的影厅存在，但不包括当前id影厅

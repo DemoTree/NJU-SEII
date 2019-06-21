@@ -1,3 +1,8 @@
+/**
+ * @author 蔡明卫
+ * @date 6/1
+ */
+
 $(document).ready(function () {
     getConsumeHistory();
 
@@ -12,7 +17,7 @@ $(document).ready(function () {
             });
     }
 
-    // TODO:填空
+    // 渲染消费记录
     function renderConsumeHistoryList(list) {
         list.forEach(function(consumeRecord){
             console.log(consumeRecord)

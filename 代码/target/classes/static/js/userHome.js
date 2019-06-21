@@ -1,8 +1,14 @@
+/**
+ * @author 蔡明卫
+ * @date 6/10
+ */
+
 window.onload=function()
 {
     getmovieboxoffice();
     getmovielist();
     getthank()
+    //获取电影总票房
     function getmovieboxoffice() {
         getRequest(
             '/statistics/boxOffice/total',
@@ -37,11 +43,7 @@ window.onload=function()
             });
 
     }
-
-
-
-
-
+    //获取上映的电影列表用于轮播图
     function getmovielist() {
         getRequest(
             '/movie/all',
@@ -61,11 +63,7 @@ window.onload=function()
         );
 
     }
-
-
-
-
-
+    //根据消费金额获取致谢列表
     function getthank() {
         getRequest(
             '/getvipconsumeforuserhome',
@@ -97,6 +95,9 @@ window.onload=function()
 
 
     }
+    //渲染轮播图动态效果
+
+    //获取对应DOM
     var oPlay=document.getElementById('play');
     var aLi=oPlay.getElementsByClassName('ali');
     var oButton=document.getElementById('button');
@@ -113,7 +114,7 @@ window.onload=function()
             now=this.index;
             tab();
         }
-    }
+    }//导航按钮绑定
     oPrev.onclick=function(){
         now--;
         if(now==-1){
@@ -131,11 +132,11 @@ window.onload=function()
     oFlash.onmouseover=function()
     {
         clearInterval(timer2);
-    }
+    }//鼠标移入
     oFlash.onmouseout=function()
     {
         timer2=setInterval(oNext.onclick,4000);
-    }
+    }//鼠标移出
     timer2=setInterval(oNext.onclick,5000);
     function tab(){
         for(var i=0; i<aLi.length; i++){
@@ -149,7 +150,7 @@ window.onload=function()
         aLi[now].style.opacity=0;
         aLi[now].style.filter="alpha(opacity=0)";
         jianbian(aLi[now]);
-    }
+    }//切换图片
     function jianbian(obj){
         var alpha=0;
         clearInterval(timer);
@@ -161,5 +162,5 @@ window.onload=function()
                 clearInterval(timer);
             }
         },10);
-    }
+    }//切换动画
 }

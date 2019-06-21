@@ -3,7 +3,7 @@ package com.example.cinema.vo;
 public class RefundForm {
     private int time;
 
-    private double persent;
+    private double persent;//折扣
 
     public void setTime(int minute){
         this.time=minute;

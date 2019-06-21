@@ -1,3 +1,8 @@
+/**
+ * @author 蔡明卫
+ * @date 6/8
+ */
+
 $(document).ready(function () {
     getRechangeRecord();
 
@@ -12,7 +17,6 @@ $(document).ready(function () {
             });
     }
 
-    // TODO:填空
     function renderRechangeRecordList(list) {
         list.forEach(function(rechangeRecord){
             var bodyContent="";

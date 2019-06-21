@@ -6,11 +6,11 @@ public class ConsumeHistoryVO {
 
     private int id;
     private int userId;
-    private double amountOfMoney;
-    private Timestamp consumeTime;
-    private int consumeType;
-    private int consumeWay;
-    private int consumeCardId;
+    private double amountOfMoney;//消费总额
+    private Timestamp consumeTime;//消费时间
+    private int consumeType;//消费类型（购买会员卡0，购买电影票1，退票2）
+    private int consumeWay;//付款方式（会员卡0，银行卡1）
+    private int consumeCardId;//付款卡号
     public ConsumeHistoryVO(){
 
     };

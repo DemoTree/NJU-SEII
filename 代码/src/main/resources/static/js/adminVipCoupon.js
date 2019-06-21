@@ -1,14 +1,18 @@
+/**
+ * @author 蔡明卫
+ * @date 6/1
+ */
+
 $(document).ready(function() {
     var couponId=0;
     var userList=[];
 
 
 
-    getCoupon();
-    getVipConsumebyMoney(0);
+    getCoupon();//查询可送优惠券
+    getVipConsumebyMoney(0);//查询满足条件的用户
 
-
-
+    //输入新的赠送条件金额
     $('#btnclick').click(function () {
         var val=$('#money').val();
         if(val==null){
@@ -20,6 +24,7 @@ $(document).ready(function() {
 
 
 
+    //选中后赠送
     $('#checkuser').click(function () {
         couponId=0;
         userList=[];
@@ -29,8 +34,7 @@ $(document).ready(function() {
         if ($("input[name='coupon']:checked").val()) {
             couponId = $("input[name='coupon']:checked").val();
         }
-        console.log(couponId)
-        console.log(userList)
+
         if (userList.length!=0&&couponId!=0){
             postRequest(
                 '/vip/addcoupon?idList='+userList+"&couponId="+couponId,
@@ -42,13 +46,7 @@ $(document).ready(function() {
                 },
                 function (error) {
                     alert(error)
-
-
-                }
-
-            )
-
-
+                })
         } else {
             if (couponId==0){
                 alert("请选择优惠券")
@@ -57,22 +55,7 @@ $(document).ready(function() {
                 alert("请选择想要赠送的会员")
                 window.location.reload();
             }
-
-
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
         })
 
 
@@ -90,6 +73,7 @@ $(document).ready(function() {
     }
 
 
+    //渲染满足条件的用户
     function renderVipConsumeList(vipConsumes) {
         $(".content-activity").empty();
         var str = "";
@@ -109,10 +93,8 @@ $(document).ready(function() {
                 "       <input  class='cbx' type='checkbox' name='user' value='"+vipConsume.userId+"'>"+
                 "     </div>" +
                 "</div>";
-
-        })
+        });
         $(".content-activity").append(str);
-
     }
 
 
@@ -130,6 +112,7 @@ $(document).ready(function() {
     }
 
 
+    //渲染优惠券
     function renderCouponList(coupons) {
         $(".content-coupon").empty();
         var str = "";
@@ -157,7 +140,7 @@ $(document).ready(function() {
                 "     </div>" +
                 "</div>";
 
-        })
+        });
         if (str==""){
             str="<p>无可用的优惠券</p>"
         }

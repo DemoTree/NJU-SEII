@@ -24,11 +24,16 @@ public interface VIPService {
     ResponseVO getCardByUserId(int userId);
 
     ResponseVO getRechangeRecordByUserId(int userId);
+
     ResponseVO getLastVipStrategy();
+
     ResponseVO updateVipStrategy(double basis,double addition,double cell,int viptype);
+
     ResponseVO addVipStrategy(VipStrategyForm vipStrategyForm);
-    ResponseVO getVipConsumebyMoney(int money);
-    ResponseVO addCoupon(List<Integer> userList,int couponId);
+
+    ResponseVO getVipConsumebyMoney(int money);//根据消费金额获取满足条件的用户
+
+    ResponseVO addCoupon(List<Integer> userList,int couponId);//指定用户赠送优惠券
 
 
 

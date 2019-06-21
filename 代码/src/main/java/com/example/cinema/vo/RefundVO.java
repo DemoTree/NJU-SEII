@@ -5,7 +5,7 @@ import com.example.cinema.po.Refund;
 public class RefundVO {
     private int id;
     private int time;
-    private double persent;
+    private double persent;//折扣
 
     public RefundVO(Refund refund){
         this.id=refund.getId();

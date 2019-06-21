@@ -1,5 +1,6 @@
 package com.example.cinema.bl.management;
 
+import com.example.cinema.vo.HallBatchDeleteForm;
 import com.example.cinema.vo.HallForm;
 import com.example.cinema.vo.ResponseVO;
 
@@ -36,7 +37,7 @@ public interface HallService {
      * @author zzy
      * @date 6/3
      */
-    ResponseVO deleteHall(HallForm hallform);
+    ResponseVO deleteHall(HallBatchDeleteForm hallform);
 
 
 }

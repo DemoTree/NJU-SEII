@@ -4,6 +4,7 @@ import com.example.cinema.bl.management.HallService;
 import com.example.cinema.data.management.HallMapper;
 import com.example.cinema.blImpl.management.schedule.ScheduleServiceForBl;
 import com.example.cinema.po.Hall;
+import com.example.cinema.vo.HallBatchDeleteForm;
 import com.example.cinema.vo.HallForm;
 import com.example.cinema.vo.HallVO;
 import com.example.cinema.vo.ResponseVO;
@@ -95,10 +96,6 @@ public class HallServiceImpl implements HallService, HallServiceForBl {
      */
     public ResponseVO addHall(HallForm hallform){
         try {
-            ResponseVO responseVO = preCheck(hallform);
-            if(!responseVO.getSuccess()){
-                return responseVO;
-            }
             hallMapper.insertOneHall(hallform);
             return ResponseVO.buildSuccess();
         } catch (Exception e) {
@@ -135,13 +132,14 @@ public class HallServiceImpl implements HallService, HallServiceForBl {
      * @author zzy
      * @date 6/3
      */
-    public ResponseVO deleteHall(HallForm hallform){
+    public ResponseVO deleteHall(HallBatchDeleteForm hallform){
         try {
+            System.out.println(hallform.getHallIdList().get(0));
 //            List<Integer> hallIdList = hallform.getScheduleIdList();
-            if(isAudienceCanView(hallform.getId())){
-                return ResponseVO.buildFailure(VIEW_CONFLICT_ERROR_MESSAGE);
-            }
-            hallMapper.deleteHall(hallform);
+                if(isAudienceCanView(hallform.getHallIdList().get(0))){
+                    return ResponseVO.buildFailure(VIEW_CONFLICT_ERROR_MESSAGE);
+                }
+            hallMapper.deleteHall(hallform.getHallIdList().get(0));
             return ResponseVO.buildSuccess();
         }catch (Exception e) {
             e.printStackTrace();
@@ -177,6 +175,8 @@ public class HallServiceImpl implements HallService, HallServiceForBl {
     ResponseVO preCheck(HallForm hallform){
         try {
             //检查是否重名
+            System.out.println(hallform.getId());
+            System.out.println(hallform.getName());
             if (hallMapper.checkHallName(hallform.getName(), hallform.getId()) == 1){
                 return ResponseVO.buildFailure(NAME_SET_ERROR_MESSAGE);
             }

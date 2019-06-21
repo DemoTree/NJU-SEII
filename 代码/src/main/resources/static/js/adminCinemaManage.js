@@ -1,3 +1,4 @@
+
 $(document).ready(function() {
 
     var canSeeDate = 0;
@@ -244,6 +245,7 @@ $(document).ready(function() {
     $("#hall-edit-remove-btn").click(function () {
         var r=confirm("确认要删除该影厅信息吗");
         if (r) {
+            console.log([Number($('#hallEditModal')[0].dataset.hallId)])
             deleteRequest(
                 '/hall/delete/batch',
                 {hallIdList:[Number($('#hallEditModal')[0].dataset.hallId)]},

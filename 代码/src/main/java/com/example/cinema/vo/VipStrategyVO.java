@@ -2,11 +2,12 @@ package com.example.cinema.vo;
 
 public class VipStrategyVO {
     private int id;
-    private double price;
-    private double basis;
-    private double addition;
-    private int viptype;
-    private double cell;
+    private double price;//会员卡价格
+    private int viptype;//会员卡类型
+    private double basis;//基础充值金额
+    private double addition;//基础赠送额度
+    private double cell;//升级上限
+
 
     public void setCell(double cell) {
         this.cell = cell;

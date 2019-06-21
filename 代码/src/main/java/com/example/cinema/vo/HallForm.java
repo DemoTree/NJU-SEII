@@ -30,7 +30,7 @@ public class HallForm {
     /**
      * 影厅种类
      */
-//	private String type;
+
     private Integer type;
 
     public HallForm(){

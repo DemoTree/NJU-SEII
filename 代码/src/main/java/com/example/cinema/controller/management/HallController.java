@@ -1,6 +1,7 @@
 package com.example.cinema.controller.management;
 
 import com.example.cinema.bl.management.HallService;
+import com.example.cinema.vo.HallBatchDeleteForm;
 import com.example.cinema.vo.HallForm;
 import com.example.cinema.vo.ResponseVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,7 @@ public class HallController {
     }
 
     @RequestMapping(value = "/hall/delete/batch", method = RequestMethod.DELETE)
-    public ResponseVO deleteHall(@RequestBody HallForm hallform) {
+    public ResponseVO deleteHall(@RequestBody HallBatchDeleteForm hallform) {
         return hallService.deleteHall(hallform);
     }
 

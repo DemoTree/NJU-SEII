@@ -20,18 +20,7 @@ public class RefundServiceImpl implements RefundService {
     @Transactional
     public ResponseVO setRefund(RefundForm refundForm){
         try{
-            //if(refundMapper.getRefund(1)==null){
-            //    Refund refund=new Refund();
-            //    refund.setId(1);
-            //    refund.setPersent(refundForm.getPersent());
-            //    refund.setTime(refundForm.getTime());
-            //    refundMapper.insertRefund(refund);
-            //}
-            //else{
-
-            //}
             refundMapper.updateRefund(1,refundForm.getTime(),refundForm.getPersent());
-
             return ResponseVO.buildSuccess();
         }catch (Exception e){
             e.printStackTrace();
